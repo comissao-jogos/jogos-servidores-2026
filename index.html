@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscrições - IV Jogos dos Servidores IFSertãoPE 2026</title>
+  <style>
+    :root {
+      --primary: #1b5e20;
+      --primary-hover: #2e7d32;
+      --bg: #f4f6f8;
+      --card-bg: #ffffff;
+      --text: #333333;
+      --border: #cccccc;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 850px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    /* CABEÇALHO COM BANNER AJUSTADO */
+    header {
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    .banner-container {
+      width: 100%;
+      height: 190px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      background-color: #fff;
+    }
+    .banner-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    h2 { font-size: 18px; color: var(--primary-hover); border-bottom: 1px solid var(--border); padding-bottom: 5px; margin-top: 30px; }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; text-align: left; }
+    input[type="text"], input[type="email"], input[type="date"], input[type="file"], textarea, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    textarea { height: 80px; resize: vertical; margin-top: 5px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .checkbox-group { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; text-align: left; }
+    .checkbox-item { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+    .box-info { background: #f0f4f1; border-left: 4px solid var(--primary); padding: 12px; margin: 15px 0; font-size: 13px; text-align: left; }
+    .box-download {
+      background-color: #e8f5e9;
+      border: 1px dashed var(--primary);
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    .btn-download {
+      display: inline-block;
+      background-color: var(--primary);
+      color: #ffffff;
+      padding: 8px 16px;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 4px;
+      font-size: 13px;
+      margin-top: 8px;
+      transition: background-color 0.2s;
+    }
+    .btn-download:hover {
+      background-color: var(--primary-hover);
+    }
+    .hidden { display: none; }
+    .tag-faixa { font-size: 11px; background-color: #e8f5e9; color: #1b5e20; border: 1px solid #c8e6c9; border-radius: 3px; padding: 2px 6px; font-weight: bold; margin-left: 6px; }
+    .tag-livre { font-size: 11px; background-color: #f5f5f5; color: #616161; border: 1px solid #e0e0e0; border-radius: 3px; padding: 2px 6px; margin-left: 6px; }
+    button.btn-submit {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 25px;
+      transition: background-color 0.2s;
+    }
+    button.btn-submit:hover { background-color: var(--primary-hover); }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <!-- BANNER COM ENQUADRAMENTO E CORTE DAS MARGENS BRANCAS EXCEDENTES -->
+    <div class="banner-container">
+      <img src="https://drive.google.com/thumbnail?id=1qZFL-iG2w4z6Hr3GciGZvHO6brpAG7EO&sz=w1000" alt="IV Jogos dos Servidores IFSertãoPE 2026" class="banner-logo">
+    </div>
+  </header>
+
+  <form id="formInscricao" onsubmit="salvarInscricao(event)">
+    
+    <!-- ETAPA 1 -->
+    <h2>1. Dados do Servidor / Capitão</h2>
+    <div class="form-group">
+      <label for="nome">Nome Completo *</label>
+      <input type="text" id="nome" required>
+    </div>
+    
+    <div class="grid-2">
+      <div class="form-group">
+        <label for="cpf">CPF *</label>
+        <input type="text" id="cpf" required placeholder="000.000.000-00" maxlength="14" oninput="mascaraCPF(this)">
+      </div>
+      <div class="form-group">
+        <label for="siape">Matrícula SIAPE *</label>
+        <input type="text" id="siape" required>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="form-group">
+        <label for="email">E-mail Institucional *</label>
+        <input type="email" id="email" required placeholder="@ifsertao-pe.edu.br">
+      </div>
+      <div class="form-group">
+        <label for="campus">Campus / Lotação *</label>
+        <select id="campus" required>
+          <option value="">Selecione...</option>
+          <option value="Reitoria">Reitoria</option>
+          <option value="Ouricuri">Campus Ouricuri</option>
+          <option value="Petrolina">Campus Petrolina</option>
+          <option value="Petrolina Zona Rural">Campus Petrolina Zona Rural</option>
+          <option value="Salgueiro">Campus Salgueiro</option>
+          <option value="Floresta">Campus Floresta</option>
+          <option value="Serra Talhada">Campus Serra Talhada</option>
+          <option value="Santa Maria da Boa Vista">Campus Santa Maria da Boa Vista</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="nascimento">Data de Nascimento *</label>
+      <input type="date" id="nascimento" required onchange="calcularCategoria()">
+    </div>
+
+    <div class="box-info" id="boxCategoria">
+      <strong>Faixas Etárias / Categorias por Idade (Aplicação: Natação e Atletismo):</strong>
+      <ul style="margin: 5px 0 0 20px; padding: 0;">
+        <li><strong>Categoria A:</strong> Até 35 anos</li>
+        <li><strong>Categoria B:</strong> 36 a 50 anos</li>
+        <li><strong>Categoria C:</strong> Acima de 50 anos</li>
+      </ul>
+      <span style="display:block; margin-top:5px; color:#555;"><i>Preencha a data de nascimento para calcular sua categoria automaticamente.</i></span>
+    </div>
+
+    <!-- ETAPA 2 -->
+    <h2>2. Modalidades Coletivas <span class="tag-livre">Categoria Livre / Por Campus</span></h2>
+    <div class="checkbox-group">
+      <label class="checkbox-item"><input type="checkbox" name="coletiva" value="Futsal Masculino" onchange="toggleEquipe('eqFutsalM', this.checked)"> Futsal Masculino (5 a 12 atletas)</label>
+      <textarea id="eqFutsalM" class="hidden" placeholder="Digite os nomes e SIAPEs dos componentes da equipe de Futsal Masculino..."></textarea>
+
+      <label class="checkbox-item"><input type="checkbox" name="coletiva" value="Futsal Feminino" onchange="toggleEquipe('eqFutsalF', this.checked)"> Futsal Feminino (5 a 12 atletas)</label>
+      <textarea id="eqFutsalF" class="hidden" placeholder="Digite os nomes e SIAPEs dos componentes da equipe de Futsal Feminino..."></textarea>
+
+      <label class="checkbox-item"><input type="checkbox" name="coletiva" value="Voleibol Masculino" onchange="toggleEquipe('eqVoleiM', this.checked)"> Voleibol Masculino (6 a 12 atletas)</label>
+      <textarea id="eqVoleiM" class="hidden" placeholder="Digite os nomes e SIAPEs dos componentes da equipe de Voleibol Masculino..."></textarea>
+
+      <label class="checkbox-item"><input type="checkbox" name="coletiva" value="Voleibol Feminino" onchange="toggleEquipe('eqVoleiF', this.checked)"> Voleibol Feminino (6 a 12 atletas)</label>
+      <textarea id="eqVoleiF" class="hidden" placeholder="Digite os nomes e SIAPEs dos componentes da equipe de Voleibol Feminino..."></textarea>
+
+      <label class="checkbox-item"><input type="checkbox" name="coletiva" value="Basquete 3x3 Masculino" onchange="toggleEquipe('eqBasqueteM', this.checked)"> Basquete 3x3 Masculino (3 a 5 atletas)</label>
+      <textarea id="eqBasqueteM" class="hidden" placeholder="Digite os nomes e SIAPEs dos componentes da equipe de Basquete 3x3..."></textarea>
+
+      <label class="checkbox-item"><input type="checkbox" name="coletiva" value="Queimada Feminina" onchange="toggleEquipe('eqQueimadaF', this.checked)"> Queimada Feminina (5 a 8 atletas)</label>
+      <textarea id="eqQueimadaF" class="hidden" placeholder="Digite os nomes e SIAPEs dos componentes da equipe de Queimada..."></textarea>
+    </div>
+
+    <!-- ETAPA 3 -->
+    <h2>3. Modalidades Individuais, Duplas e Jogos de Salão <span class="tag-livre">Geral / Por Naipe</span></h2>
+    <div class="checkbox-group">
+      <label class="checkbox-item"><input type="checkbox" id="chkVoleiAreia" onchange="toggleEquipe('voleiAreiaParceiro', this.checked)"> Vôlei de Areia (Dupla)</label>
+      <input type="text" id="voleiAreiaParceiro" class="hidden" placeholder="Nome/SIAPE do Parceiro(a)">
+
+      <label class="checkbox-item"><input type="checkbox" id="chkBeachTennis" onchange="toggleEquipe('beachParceiro', this.checked)"> Beach Tennis (Misto)</label>
+      <input type="text" id="beachParceiro" class="hidden" placeholder="Nome/SIAPE do Parceiro(a)">
+
+      <label class="checkbox-item"><input type="checkbox" id="chkDomino" onchange="toggleEquipe('dominoParceiro', this.checked)"> Dominó (Misto)</label>
+      <input type="text" id="dominoParceiro" class="hidden" placeholder="Nome/SIAPE da Dupla">
+
+      <label class="checkbox-item"><input type="checkbox" name="individual" value="Tênis de Mesa Individual"> Tênis de Mesa (Individual)</label>
+      <label class="checkbox-item"><input type="checkbox" name="individual" value="Tênis de Mesa Equipe"> Tênis de Mesa (Equipe)</label>
+      <label class="checkbox-item"><input type="checkbox" name="individual" value="Xadrez Misto"> Xadrez Misto</label>
+      <label class="checkbox-item"><input type="checkbox" name="individual" value="Dama Misto"> Dama Misto</label>
+      <label class="checkbox-item"><input type="checkbox" name="individual" value="Pôker Masculino"> Pôker Masculino</label>
+      <label class="checkbox-item"><input type="checkbox" name="individual" value="Pôker Feminino"> Pôker Feminino</label>
+    </div>
+
+    <!-- ETAPA 4 -->
+    <h2>4. Provas de Natação <span class="tag-faixa">Disputa Por Faixa Etária (Cat. A, B e C)</span></h2>
+    <p style="font-size: 13px; color: #555; margin-top: -5px; text-align: left;">Máximo de 3 provas individuais + 1 revezamento por servidor.</p>
+    <div class="checkbox-group" id="grupoNatacao">
+      <label class="checkbox-item"><input type="checkbox" name="natacaoInd" value="Prova Individual 1" onclick="validarLimite(this, 'natacaoInd', 3)"> Prova Individual 1 <span class="tag-faixa">Por Faixa Etária</span></label>
+      <label class="checkbox-item"><input type="checkbox" name="natacaoInd" value="Prova Individual 2" onclick="validarLimite(this, 'natacaoInd', 3)"> Prova Individual 2 <span class="tag-faixa">Por Faixa Etária</span></label>
+      <label class="checkbox-item"><input type="checkbox" name="natacaoInd" value="Prova Individual 3" onclick="validarLimite(this, 'natacaoInd', 3)"> Prova Individual 3 <span class="tag-faixa">Por Faixa Etária</span></label>
+      <label class="checkbox-item"><input type="checkbox" name="natacaoRev" value="Revezamento Natação"> Revezamento (Equipe do Campus)</label>
+    </div>
+
+    <!-- ETAPA 5 -->
+    <h2>5. Provas de Atletismo <span class="tag-faixa">Disputa Por Faixa Etária (Cat. A, B e C)</span></h2>
+    <p style="font-size: 13px; color: #555; margin-top: -5px; text-align: left;">Máximo de 3 provas individuais + 2 revezamentos por servidor.</p>
+    <div class="checkbox-group" id="grupoAtletismo">
+      <strong>Provas de Pista:</strong>
+      <label class="checkbox-item"><input type="checkbox" name="atletismoInd" value="400m rasos" onclick="validarLimite(this, 'atletismoInd', 3)"> 400m rasos <span class="tag-faixa">Por Faixa Etária</span></label>
+      <label class="checkbox-item"><input type="checkbox" name="atletismoInd" value="1500m rasos" onclick="validarLimite(this, 'atletismoInd', 3)"> 1500m rasos <span class="tag-faixa">Por Faixa Etária</span></label>
+      
+      <strong>Provas de Campo:</strong>
+      <label class="checkbox-item"><input type="checkbox" name="atletismoInd" value="Arremesso de peso" onclick="validarLimite(this, 'atletismoInd', 3)"> Arremesso de peso <span class="tag-faixa">Por Faixa Etária</span></label>
+      <label class="checkbox-item"><input type="checkbox" name="atletismoInd" value="Lançamento de dardo" onclick="validarLimite(this, 'atletismoInd', 3)"> Lançamento de dardo <span class="tag-faixa">Por Faixa Etária</span></label>
+      <label class="checkbox-item"><input type="checkbox" name="atletismoInd" value="Lançamento de disco" onclick="validarLimite(this, 'atletismoInd', 3)"> Lançamento de disco <span class="tag-faixa">Por Faixa Etária</span></label>
+      <label class="checkbox-item"><input type="checkbox" name="atletismoInd" value="Salto em distância" onclick="validarLimite(this, 'atletismoInd', 3)"> Salto em distância <span class="tag-faixa">Por Faixa Etária</span></label>
+      
+      <hr style="width: 100%; border-top: 1px dashed #ccc; margin: 5px 0;">
+      <strong>Provas Coletivas / Revezamentos:</strong>
+      <label class="checkbox-item"><input type="checkbox" name="atletismoRev" value="Revezamento 1" onclick="validarLimite(this, 'atletismoRev', 2)"> Revezamento 1</label>
+      <label class="checkbox-item"><input type="checkbox" name="atletismoRev" value="Revezamento 2" onclick="validarLimite(this, 'atletismoRev', 2)"> Revezamento 2</label>
+    </div>
+
+    <!-- ETAPA 6 -->
+    <h2>6. Anexo de Documentação (Lista da Equipe)</h2>
+    
+    <div class="box-download">
+      <strong>Baixar Modelo da Ficha de Inscrição:</strong>
+      <p style="margin: 5px 0; font-size: 13px; color: #555;">Baixe o modelo abaixo, preencha a relação de atletas da sua equipe e faça o envio do arquivo preenchido no campo de anexo.</p>
+      <a href="https://docs.google.com/document/d/1S0vfrf8TN2zGSDhQ-1LkEy_hHF1hcUrw/export?format=docx" target="_blank" class="btn-download">
+        📄 Baixar Ficha de Inscrição (DOCX)
+      </a>
+    </div>
+
+    <div class="form-group">
+      <label for="arquivoPdf">Envio da Lista de Participantes Preenchida (PDF ou Word):</label>
+      <input type="file" id="arquivoPdf" accept=".pdf,.doc,.docx">
+      <small style="color: #666; display: block; text-align: left;">* Opcional no momento do cadastro individual, obrigatório para inscrição final das equipes coletivas.</small>
+    </div>
+
+    <!-- ETAPA 7 -->
+    <h2>7. Termo e Confirmação</h2>
+    <div class="checkbox-group">
+      <label class="checkbox-item">
+        <input type="checkbox" required> Declaro estar ciente e de acordo com o Regulamento dos Jogos dos Servidores 2026 e em plenas condições de saúde para participar.
+      </label>
+    </div>
+
+    <button type="submit" class="btn-submit">SUBMETER INSCRIÇÃO</button>
+  </form>
+</div>
+
+<script>
+  function mascaraCPF(input) {
+    let value = input.value.replace(/\D/g, "");
+    if (value.length > 11) value = value.slice(0, 11);
+    value = value.replace(/(\d{3})(\d)/, "$1.$2");
+    value = value.replace(/(\d{3})(\d)/, "$1.$2");
+    value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+    input.value = value;
+  }
+
+  function calcularCategoria() {
+    const dataInput = document.getElementById('nascimento').value;
+    if (!dataInput) return "";
+
+    const dataNasc = new Date(dataInput + 'T00:00:00');
+    const dataJogos = new Date('2026-11-04T00:00:00');
+
+    let idade = dataJogos.getFullYear() - dataNasc.getFullYear();
+    const m = dataJogos.getMonth() - dataNasc.getMonth();
+    
+    if (m < 0 || (m === 0 && dataJogos.getDate() < dataNasc.getDate())) {
+      idade--;
+    }
+
+    let cat = "";
+    if (idade <= 35) {
+      cat = "Categoria A (até 35 anos)";
+    } else if (idade <= 50) {
+      cat = "Categoria B (36 a 50 anos)";
+    } else {
+      cat = "Categoria C (acima de 50 anos)";
+    }
+
+    document.getElementById('boxCategoria').innerHTML = 
+      `<strong>Sua Categoria Etária Calculada (${idade} anos em nov/2026):</strong><br>` +
+      `<span style="color: var(--primary); font-size: 15px; font-weight: bold;">${cat}</span><br>` +
+      `<small style="color: #666;">Esta categoria será aplicada automaticamente nas provas de Natação e Atletismo.</small>`;
+    
+    return cat;
+  }
+
+  function toggleEquipe(idCampo, visivel) {
+    const el = document.getElementById(idCampo);
+    if (el) {
+      if (visivel) {
+        el.classList.remove('hidden');
+      } else {
+        el.classList.add('hidden');
+        el.value = '';
+      }
+    }
+  }
+
+  function validarLimite(elemento, nomeGrupo, limite) {
+    const marcados = document.querySelectorAll(`input[name="${nomeGrupo}"]:checked`);
+    if (marcados.length > limite) {
+      alert(`Atenção: Você só pode selecionar no máximo ${limite} opção(ões) nesta seção!`);
+      elemento.checked = false;
+    }
+  }
+
+  function lerArquivoParaBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function salvarInscricao(event) {
+    event.preventDefault();
+
+    const URL_DO_SCRIPT = "https://script.google.com/macros/s/AKfycbzp9ZiBaiKBAV0InC685fEprFxutka_SjU_LLgCmgGQIIxN3qBrBPNshN3zlVXrCoGL/exec";
+
+    const btn = document.querySelector('.btn-submit');
+    btn.innerText = "ENVIANDO INSCRIÇÃO E ARQUIVO...";
+    btn.disabled = true;
+
+    try {
+      const nome = document.getElementById('nome').value;
+      const cpf = document.getElementById('cpf').value;
+      const siape = document.getElementById('siape').value;
+      const email = document.getElementById('email').value;
+      const campus = document.getElementById('campus').value;
+      const nascimento = document.getElementById('nascimento').value;
+      const categoria = calcularCategoria();
+
+      const getChecked = (name) => {
+        return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
+          .map(el => el.value)
+          .join(', ');
+      };
+
+      const coletivas = getChecked('coletiva');
+      
+      let listaEquipes = [];
+      const mapeamentoEquipes = [
+        { id: 'eqFutsalM', nome: 'Futsal Masc' },
+        { id: 'eqFutsalF', nome: 'Futsal Fem' },
+        { id: 'eqVoleiM', nome: 'Voleibol Masc' },
+        { id: 'eqVoleiF', nome: 'Voleibol Fem' },
+        { id: 'eqBasqueteM', nome: 'Basquete 3x3' },
+        { id: 'eqQueimadaF', nome: 'Queimada Fem' }
+      ];
+
+      mapeamentoEquipes.forEach(item => {
+        const txt = document.getElementById(item.id).value.trim();
+        if (txt) {
+          listaEquipes.push(`[${item.nome}]: ${txt}`);
+        }
+      });
+      const equipeColetiva = listaEquipes.join(' | ');
+
+      let individuaisArr = Array.from(document.querySelectorAll('input[name="individual"]:checked')).map(el => el.value);
+      
+      if (document.getElementById('chkVoleiAreia') && document.getElementById('chkVoleiAreia').checked) {
+        const p = document.getElementById('voleiAreiaParceiro').value;
+        individuaisArr.push(`Vôlei de Areia (Parceiro: ${p || 'Não informado'})`);
+      }
+      if (document.getElementById('chkBeachTennis') && document.getElementById('chkBeachTennis').checked) {
+        const p = document.getElementById('beachParceiro').value;
+        individuaisArr.push(`Beach Tennis (Parceiro: ${p || 'Não informado'})`);
+      }
+      if (document.getElementById('chkDomino') && document.getElementById('chkDomino').checked) {
+        const p = document.getElementById('dominoParceiro').value;
+        individuaisArr.push(`Dominó (Dupla: ${p || 'Não informado'})`);
+      }
+      const individuais = individuaisArr.join(', ');
+
+      const natInd = getChecked('natacaoInd');
+      const natRev = getChecked('natacaoRev');
+      const natacao = [natInd, natRev].filter(Boolean).join(' | ');
+
+      const atlInd = getChecked('atletismoInd');
+      const atlRev = getChecked('atletismoRev');
+      const atletismo = [atlInd, atlRev].filter(Boolean).join(' | ');
+
+      let fileData = "";
+      let fileName = "";
+      const fileInput = document.getElementById('arquivoPdf');
+
+      if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        fileName = `Lista_Equipe_${siape}_${file.name}`;
+        fileData = await lerArquivoParaBase64(file);
+      }
+
+      const params = new URLSearchParams();
+      params.append("nome", nome);
+      params.append("cpf", cpf);
+      params.append("siape", siape);
+      params.append("email", email);
+      params.append("campus", campus);
+      params.append("nascimento", nascimento);
+      params.append("categoria", categoria);
+      params.append("coletivas", coletivas);
+      params.append("equipeColetiva", equipeColetiva);
+      params.append("individuais", individuais);
+      params.append("natacao", natacao);
+      params.append("atletismo", atletismo);
+      params.append("fileData", fileData);
+      params.append("fileName", fileName);
+
+      await fetch(URL_DO_SCRIPT, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString()
+      });
+
+      alert("Inscrição e documento enviados com sucesso! Os dados foram gravados na planilha oficial.");
+      document.getElementById('formInscricao').reset();
+      document.getElementById('boxCategoria').innerHTML = 
+        `<strong>Faixas Etárias / Categorias por Idade (Aplicação: Natação e Atletismo):</strong>` +
+        `<ul style="margin: 5px 0 0 20px; padding: 0;">` +
+        `<li><strong>Categoria A:</strong> Até 35 anos</li>` +
+        `<li><strong>Categoria B:</strong> 36 a 50 anos</li>` +
+        `<li><strong>Categoria C:</strong> Acima de 50 anos</li>` +
+        `</ul>` +
+        `<span style="display:block; margin-top:5px; color:#555;"><i>Preencha a data de nascimento para calcular sua categoria automaticamente.</i></span>`;
+      
+      mapeamentoEquipes.forEach(item => toggleEquipe(item.id, false));
+      toggleEquipe('voleiAreiaParceiro', false);
+      toggleEquipe('beachParceiro', false);
+      toggleEquipe('dominoParceiro', false);
+
+    } catch (error) {
+      alert("Ocorreu um erro ao enviar sua inscrição. Por favor, tente novamente.");
+      console.error(error);
+    } finally {
+      btn.innerText = "SUBMETER INSCRIÇÃO";
+      btn.disabled = false;
+    }
+  }
+</script>
+
+</body>
+</html>
