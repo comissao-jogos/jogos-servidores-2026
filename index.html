@@ -115,7 +115,6 @@
 
 <div class="container">
   <header>
-    <!-- BANNER COM ENQUADRAMENTO E CORTE DAS MARGENS BRANCAS EXCEDENTES -->
     <div class="banner-container">
       <img src="https://drive.google.com/thumbnail?id=1qZFL-iG2w4z6Hr3GciGZvHO6brpAG7EO&sz=w1000" alt="IV Jogos dos Servidores IFSertãoPE 2026" class="banner-logo">
     </div>
@@ -168,13 +167,12 @@
     </div>
 
     <div class="box-info" id="boxCategoria">
-      <strong>Faixas Etárias / Categorias por Idade (Aplicação: Natação e Atletismo):</strong>
+      <strong>Faixas Etárias / Categorias por Idade (Regulamento 2026):</strong>
       <ul style="margin: 5px 0 0 20px; padding: 0;">
-        <li><strong>Categoria A:</strong> Até 35 anos</li>
-        <li><strong>Categoria B:</strong> 36 a 50 anos</li>
-        <li><strong>Categoria C:</strong> Acima de 50 anos</li>
+        <li><strong>Natação:</strong> Cat. A (Até 35), Cat. B (36 a 44), Cat. C (45 ou mais)</li>
+        <li><strong>Atletismo:</strong> Cat. A (Até 35), Cat. B (36 a 44), Cat. C (45 a 54), Cat. D (55 ou mais)</li>
       </ul>
-      <span style="display:block; margin-top:5px; color:#555;"><i>Preencha a data de nascimento para calcular sua categoria automaticamente.</i></span>
+      <span style="display:block; margin-top:5px; color:#555;"><i>Preencha sua data de nascimento para enquadramento automático (idade em 31/12/2026).</i></span>
     </div>
 
     <!-- ETAPA 2 -->
@@ -195,18 +193,18 @@
       <label class="checkbox-item"><input type="checkbox" name="coletiva" value="Basquete 3x3 Masculino" onchange="toggleEquipe('eqBasqueteM', this.checked)"> Basquete 3x3 Masculino (3 a 5 atletas)</label>
       <textarea id="eqBasqueteM" class="hidden" placeholder="Digite os nomes e SIAPEs dos componentes da equipe de Basquete 3x3..."></textarea>
 
-      <label class="checkbox-item"><input type="checkbox" name="coletiva" value="Queimada Feminina" onchange="toggleEquipe('eqQueimadaF', this.checked)"> Queimada Feminina (5 a 8 atletas)</label>
+      <label class="checkbox-item"><input type="checkbox" name="coletiva" value="Queimada Feminina" onchange="toggleEquipe('eqQueimadaF', this.checked)"> Queimada Feminina (7 a 10 atletas)</label>
       <textarea id="eqQueimadaF" class="hidden" placeholder="Digite os nomes e SIAPEs dos componentes da equipe de Queimada..."></textarea>
     </div>
 
     <!-- ETAPA 3 -->
     <h2>3. Modalidades Individuais, Duplas e Jogos de Salão <span class="tag-livre">Geral / Por Naipe</span></h2>
     <div class="checkbox-group">
-      <label class="checkbox-item"><input type="checkbox" id="chkVoleiAreia" onchange="toggleEquipe('voleiAreiaParceiro', this.checked)"> Vôlei de Areia (Dupla)</label>
+      <label class="checkbox-item"><input type="checkbox" id="chkVoleiAreia" onchange="toggleEquipe('voleiAreiaParceiro', this.checked)"> Vôlei de Areia (Dupla) <span class="tag-faixa">Máx 2 Duplas Masc / 2 Fem por Campus</span></label>
       <input type="text" id="voleiAreiaParceiro" class="hidden" placeholder="Nome/SIAPE do Parceiro(a)">
 
-      <label class="checkbox-item"><input type="checkbox" id="chkBeachTennis" onchange="toggleEquipe('beachParceiro', this.checked)"> Beach Tennis (Misto)</label>
-      <input type="text" id="beachParceiro" class="hidden" placeholder="Nome/SIAPE do Parceiro(a)">
+      <label class="checkbox-item"><input type="checkbox" id="chkBeachTennis" onchange="toggleEquipe('beachParceiro', this.checked)"> Beach Tennis (Dupla Mista) <span class="tag-faixa">Máx 2 Duplas por Campus</span></label>
+      <input type="text" id="beachParceiro" class="hidden" placeholder="Nome/SIAPE da Parceira (Servidora) ou Parceiro (Servidor)">
 
       <label class="checkbox-item"><input type="checkbox" id="chkDomino" onchange="toggleEquipe('dominoParceiro', this.checked)"> Dominó (Misto)</label>
       <input type="text" id="dominoParceiro" class="hidden" placeholder="Nome/SIAPE da Dupla">
@@ -220,33 +218,60 @@
     </div>
 
     <!-- ETAPA 4 -->
-    <h2>4. Provas de Natação <span class="tag-faixa">Disputa Por Faixa Etária (Cat. A, B e C)</span></h2>
-    <p style="font-size: 13px; color: #555; margin-top: -5px; text-align: left;">Máximo de 3 provas individuais + 1 revezamento por servidor.</p>
+    <h2>4. Provas de Natação <span class="tag-faixa">Disputa Por Categoria (A, B e C)</span></h2>
+    <p style="font-size: 13px; color: #555; margin-top: -5px; text-align: left;">
+      Selecione a sua faixa etária e até 3 provas individuais + 1 revezamento por servidor.
+    </p>
+
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label for="natacaoCategoria">Faixa Etária (Natação) - Art. 18:</label>
+      <select id="natacaoCategoria" name="natacaoCategoria">
+        <option value="">-- Selecione a Categoria --</option>
+        <option value="Categoria A (Livre - Até 35 anos)">Categoria A (Livre - Até 35 anos)</option>
+        <option value="Categoria B (Veterano - 36 a 44 anos)">Categoria B (Veterano - 36 a 44 anos)</option>
+        <option value="Categoria C (Master - 45 anos ou mais)">Categoria C (Master - 45 anos ou mais)</option>
+      </select>
+    </div>
+
     <div class="checkbox-group" id="grupoNatacao">
-      <label class="checkbox-item"><input type="checkbox" name="natacaoInd" value="Prova Individual 1" onclick="validarLimite(this, 'natacaoInd', 3)"> Prova Individual 1 <span class="tag-faixa">Por Faixa Etária</span></label>
-      <label class="checkbox-item"><input type="checkbox" name="natacaoInd" value="Prova Individual 2" onclick="validarLimite(this, 'natacaoInd', 3)"> Prova Individual 2 <span class="tag-faixa">Por Faixa Etária</span></label>
-      <label class="checkbox-item"><input type="checkbox" name="natacaoInd" value="Prova Individual 3" onclick="validarLimite(this, 'natacaoInd', 3)"> Prova Individual 3 <span class="tag-faixa">Por Faixa Etária</span></label>
-      <label class="checkbox-item"><input type="checkbox" name="natacaoRev" value="Revezamento Natação"> Revezamento (Equipe do Campus)</label>
+      <strong>Provas Individuais:</strong>
+      <label class="checkbox-item"><input type="checkbox" name="natacaoInd" value="Costa 25m" onclick="validarLimite(this, 'natacaoInd', 3)"> Costa 25m</label>
+      <label class="checkbox-item"><input type="checkbox" name="natacaoInd" value="Peito 25m" onclick="validarLimite(this, 'natacaoInd', 3)"> Peito 25m</label>
+      <label class="checkbox-item"><input type="checkbox" name="natacaoInd" value="Crawl 25m" onclick="validarLimite(this, 'natacaoInd', 3)"> Crawl 25m</label>
+
+      <hr style="width: 100%; border-top: 1px dashed #ccc; margin: 8px 0;">
+      
+      <strong>Provas Coletivas:</strong>
+      <label class="checkbox-item"><input type="checkbox" name="natacaoRev" value="Revezamento 100m" onclick="validarLimite(this, 'natacaoRev', 1)"> Revezamento 100m Misto</label>
     </div>
 
     <!-- ETAPA 5 -->
-    <h2>5. Provas de Atletismo <span class="tag-faixa">Disputa Por Faixa Etária (Cat. A, B e C)</span></h2>
-    <p style="font-size: 13px; color: #555; margin-top: -5px; text-align: left;">Máximo de 3 provas individuais + 2 revezamentos por servidor.</p>
+    <h2>5. Provas de Atletismo <span class="tag-faixa">Disputa Por Categoria (A, B, C e D)</span></h2>
+    <p style="font-size: 13px; color: #555; margin-top: -5px; text-align: left;">
+      Selecione a sua faixa etária e até 3 provas individuais.
+    </p>
+
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label for="atletismoCategoria">Faixa Etária (Atletismo) - Art. 23:</label>
+      <select id="atletismoCategoria" name="atletismoCategoria">
+        <option value="">-- Selecione a Categoria --</option>
+        <option value="Categoria A (Livre - Até 35 anos)">Categoria A (Livre - Até 35 anos)</option>
+        <option value="Categoria B (Veterano - 36 a 44 anos)">Categoria B (Veterano - 36 a 44 anos)</option>
+        <option value="Categoria C (Master - 45 a 54 anos)">Categoria C (Master - 45 a 54 anos)</option>
+        <option value="Categoria D (Sênior - 55 anos ou mais)">Categoria D (Sênior - 55 anos ou mais)</option>
+      </select>
+    </div>
+
     <div class="checkbox-group" id="grupoAtletismo">
       <strong>Provas de Pista:</strong>
-      <label class="checkbox-item"><input type="checkbox" name="atletismoInd" value="400m rasos" onclick="validarLimite(this, 'atletismoInd', 3)"> 400m rasos <span class="tag-faixa">Por Faixa Etária</span></label>
-      <label class="checkbox-item"><input type="checkbox" name="atletismoInd" value="1500m rasos" onclick="validarLimite(this, 'atletismoInd', 3)"> 1500m rasos <span class="tag-faixa">Por Faixa Etária</span></label>
+      <label class="checkbox-item"><input type="checkbox" name="atletismoInd" value="400m rasos" onclick="validarLimite(this, 'atletismoInd', 3)"> 400m rasos <span class="tag-faixa">Por Categoria</span></label>
+      <label class="checkbox-item"><input type="checkbox" name="atletismoInd" value="1500m rasos" onclick="validarLimite(this, 'atletismoInd', 3)"> 1500m rasos <span class="tag-faixa">Por Categoria</span></label>
       
-      <strong>Provas de Campo:</strong>
-      <label class="checkbox-item"><input type="checkbox" name="atletismoInd" value="Arremesso de peso" onclick="validarLimite(this, 'atletismoInd', 3)"> Arremesso de peso <span class="tag-faixa">Por Faixa Etária</span></label>
-      <label class="checkbox-item"><input type="checkbox" name="atletismoInd" value="Lançamento de dardo" onclick="validarLimite(this, 'atletismoInd', 3)"> Lançamento de dardo <span class="tag-faixa">Por Faixa Etária</span></label>
-      <label class="checkbox-item"><input type="checkbox" name="atletismoInd" value="Lançamento de disco" onclick="validarLimite(this, 'atletismoInd', 3)"> Lançamento de disco <span class="tag-faixa">Por Faixa Etária</span></label>
-      <label class="checkbox-item"><input type="checkbox" name="atletismoInd" value="Salto em distância" onclick="validarLimite(this, 'atletismoInd', 3)"> Salto em distância <span class="tag-faixa">Por Faixa Etária</span></label>
-      
-      <hr style="width: 100%; border-top: 1px dashed #ccc; margin: 5px 0;">
-      <strong>Provas Coletivas / Revezamentos:</strong>
-      <label class="checkbox-item"><input type="checkbox" name="atletismoRev" value="Revezamento 1" onclick="validarLimite(this, 'atletismoRev', 2)"> Revezamento 1</label>
-      <label class="checkbox-item"><input type="checkbox" name="atletismoRev" value="Revezamento 2" onclick="validarLimite(this, 'atletismoRev', 2)"> Revezamento 2</label>
+      <strong style="margin-top: 10px; display: block;">Provas de Campo:</strong>
+      <label class="checkbox-item"><input type="checkbox" name="atletismoInd" value="Arremesso de peso" onclick="validarLimite(this, 'atletismoInd', 3)"> Arremesso de peso <span class="tag-faixa">Por Categoria</span></label>
+      <label class="checkbox-item"><input type="checkbox" name="atletismoInd" value="Lançamento de dardo" onclick="validarLimite(this, 'atletismoInd', 3)"> Lançamento de dardo <span class="tag-faixa">Por Categoria</span></label>
+      <label class="checkbox-item"><input type="checkbox" name="atletismoInd" value="Lançamento de disco" onclick="validarLimite(this, 'atletismoInd', 3)"> Lançamento de disco <span class="tag-faixa">Por Categoria</span></label>
+      <label class="checkbox-item"><input type="checkbox" name="atletismoInd" value="Salto em distância" onclick="validarLimite(this, 'atletismoInd', 3)"> Salto em distância <span class="tag-faixa">Por Categoria</span></label>
     </div>
 
     <!-- ETAPA 6 -->
@@ -293,30 +318,34 @@
     if (!dataInput) return "";
 
     const dataNasc = new Date(dataInput + 'T00:00:00');
-    const dataJogos = new Date('2026-11-04T00:00:00');
+    const dataJogos = new Date('2026-12-31T00:00:00');
 
     let idade = dataJogos.getFullYear() - dataNasc.getFullYear();
-    const m = dataJogos.getMonth() - dataNasc.getMonth();
-    
-    if (m < 0 || (m === 0 && dataJogos.getDate() < dataNasc.getDate())) {
-      idade--;
-    }
 
-    let cat = "";
-    if (idade <= 35) {
-      cat = "Categoria A (até 35 anos)";
-    } else if (idade <= 50) {
-      cat = "Categoria B (36 a 50 anos)";
-    } else {
-      cat = "Categoria C (acima de 50 anos)";
-    }
+    // Categoria Atletismo (Art. 23)
+    let catAtl = "";
+    if (idade <= 35) catAtl = "Categoria A (Livre - Até 35 anos)";
+    else if (idade <= 44) catAtl = "Categoria B (Veterano - 36 a 44 anos)";
+    else if (idade <= 54) catAtl = "Categoria C (Master - 45 a 54 anos)";
+    else catAtl = "Categoria D (Sênior - 55 anos ou mais)";
+
+    // Categoria Natação (Art. 18)
+    let catNat = "";
+    if (idade <= 35) catNat = "Categoria A (Livre - Até 35 anos)";
+    else if (idade <= 44) catNat = "Categoria B (Veterano - 36 a 44 anos)";
+    else catNat = "Categoria C (Master - 45 anos ou mais)";
+
+    const natSelect = document.getElementById('natacaoCategoria');
+    const atlSelect = document.getElementById('atletismoCategoria');
+    if (natSelect) natSelect.value = catNat;
+    if (atlSelect) atlSelect.value = catAtl;
 
     document.getElementById('boxCategoria').innerHTML = 
-      `<strong>Sua Categoria Etária Calculada (${idade} anos em nov/2026):</strong><br>` +
-      `<span style="color: var(--primary); font-size: 15px; font-weight: bold;">${cat}</span><br>` +
-      `<small style="color: #666;">Esta categoria será aplicada automaticamente nas provas de Natação e Atletismo.</small>`;
-    
-    return cat;
+      `<strong>Sua Idade Regulamentar em 2026: ${idade} anos</strong><br>` +
+      `<span style="color: var(--primary); font-size: 14px; font-weight: bold;">Atletismo: ${catAtl}</span><br>` +
+      `<span style="color: var(--primary); font-size: 14px; font-weight: bold;">Natação: ${catNat}</span>`;
+
+    return `Atletismo: ${catAtl} | Natação: ${catNat}`;
   }
 
   function toggleEquipe(idCampo, visivel) {
@@ -408,13 +437,14 @@
       }
       const individuais = individuaisArr.join(', ');
 
+      const natCat = document.getElementById('natacaoCategoria').value;
       const natInd = getChecked('natacaoInd');
       const natRev = getChecked('natacaoRev');
-      const natacao = [natInd, natRev].filter(Boolean).join(' | ');
+      const natacao = [natCat ? `[${natCat}]` : '', natInd, natRev].filter(Boolean).join(' | ');
 
+      const atlCat = document.getElementById('atletismoCategoria').value;
       const atlInd = getChecked('atletismoInd');
-      const atlRev = getChecked('atletismoRev');
-      const atletismo = [atlInd, atlRev].filter(Boolean).join(' | ');
+      const atletismo = [atlCat ? `[${atlCat}]` : '', atlInd].filter(Boolean).join(' | ');
 
       let fileData = "";
       let fileName = "";
@@ -442,28 +472,32 @@
       params.append("fileData", fileData);
       params.append("fileName", fileName);
 
-      await fetch(URL_DO_SCRIPT, {
+      const response = await fetch(URL_DO_SCRIPT, {
         method: 'POST',
-        mode: 'no-cors',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: params.toString()
       });
 
-      alert("Inscrição e documento enviados com sucesso! Os dados foram gravados na planilha oficial.");
-      document.getElementById('formInscricao').reset();
-      document.getElementById('boxCategoria').innerHTML = 
-        `<strong>Faixas Etárias / Categorias por Idade (Aplicação: Natação e Atletismo):</strong>` +
-        `<ul style="margin: 5px 0 0 20px; padding: 0;">` +
-        `<li><strong>Categoria A:</strong> Até 35 anos</li>` +
-        `<li><strong>Categoria B:</strong> 36 a 50 anos</li>` +
-        `<li><strong>Categoria C:</strong> Acima de 50 anos</li>` +
-        `</ul>` +
-        `<span style="display:block; margin-top:5px; color:#555;"><i>Preencha a data de nascimento para calcular sua categoria automaticamente.</i></span>`;
-      
-      mapeamentoEquipes.forEach(item => toggleEquipe(item.id, false));
-      toggleEquipe('voleiAreiaParceiro', false);
-      toggleEquipe('beachParceiro', false);
-      toggleEquipe('dominoParceiro', false);
+      const resText = await response.text();
+
+      if (resText.includes("ERRO:")) {
+        alert(resText);
+      } else {
+        alert("Inscrição e documento enviados com sucesso! Os dados foram gravados na planilha oficial.");
+        document.getElementById('formInscricao').reset();
+        document.getElementById('boxCategoria').innerHTML = 
+          `<strong>Faixas Etárias / Categorias por Idade (Regulamento 2026):</strong>` +
+          `<ul style="margin: 5px 0 0 20px; padding: 0;">` +
+          `<li><strong>Natação:</strong> Cat. A (Até 35), Cat. B (36 a 44), Cat. C (45 ou mais)</li>` +
+          `<li><strong>Atletismo:</strong> Cat. A (Até 35), Cat. B (36 a 44), Cat. C (45 a 54), Cat. D (55 ou mais)</li>` +
+          `</ul>` +
+          `<span style="display:block; margin-top:5px; color:#555;"><i>Preencha sua data de nascimento para enquadramento automático (idade em 31/12/2026).</i></span>`;
+        
+        mapeamentoEquipes.forEach(item => toggleEquipe(item.id, false));
+        toggleEquipe('voleiAreiaParceiro', false);
+        toggleEquipe('beachParceiro', false);
+        toggleEquipe('dominoParceiro', false);
+      }
 
     } catch (error) {
       alert("Ocorreu um erro ao enviar sua inscrição. Por favor, tente novamente.");
