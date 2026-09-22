@@ -94,6 +94,7 @@
     }
     .hidden { display: none; }
     .tag-faixa { font-size: 11px; background-color: #e8f5e9; color: #1b5e20; border: 1px solid #c8e6c9; border-radius: 3px; padding: 2px 6px; font-weight: bold; margin-left: 6px; }
+    .tag-pcd { font-size: 11px; background-color: #e3f2fd; color: #0d47a1; border: 1px solid #bbdefb; border-radius: 3px; padding: 2px 6px; font-weight: bold; margin-left: 6px; }
     .tag-livre { font-size: 11px; background-color: #f5f5f5; color: #616161; border: 1px solid #e0e0e0; border-radius: 3px; padding: 2px 6px; margin-left: 6px; }
     button.btn-submit {
       background-color: var(--primary);
@@ -218,7 +219,7 @@
     </div>
 
     <!-- ETAPA 4 -->
-    <h2>4. Provas de Natação <span class="tag-faixa">Disputa Por Categoria (A, B e C)</span></h2>
+    <h2>4. Provas de Natação <span class="tag-faixa">Disputa Por Categoria (A, B e C) e PCD</span></h2>
     <p style="font-size: 13px; color: #555; margin-top: -5px; text-align: left;">
       Selecione a sua faixa etária e até 3 provas individuais + 1 revezamento por servidor.
     </p>
@@ -238,6 +239,12 @@
       <label class="checkbox-item"><input type="checkbox" name="natacaoInd" value="Costa 25m" onclick="validarLimite(this, 'natacaoInd', 3)"> Costa 25m</label>
       <label class="checkbox-item"><input type="checkbox" name="natacaoInd" value="Peito 25m" onclick="validarLimite(this, 'natacaoInd', 3)"> Peito 25m</label>
       <label class="checkbox-item"><input type="checkbox" name="natacaoInd" value="Crawl 25m" onclick="validarLimite(this, 'natacaoInd', 3)"> Crawl 25m</label>
+
+      <hr style="width: 100%; border-top: 1px dashed #ccc; margin: 8px 0;">
+
+      <strong>Provas PCD (Pessoas com Deficiência):</strong>
+      <label class="checkbox-item"><input type="checkbox" name="natacaoInd" value="25m Crawl PCD - Amputados de Membros Inferiores" onclick="validarLimite(this, 'natacaoInd', 3)"> 25m Crawl PCD - Amputados de Membros Inferiores <span class="tag-pcd">PCD</span></label>
+      <label class="checkbox-item"><input type="checkbox" name="natacaoInd" value="25m Crawl PCD - Amputados de Membros Superiores" onclick="validarLimite(this, 'natacaoInd', 3)"> 25m Crawl PCD - Amputados de Membros Superiores <span class="tag-pcd">PCD</span></label>
 
       <hr style="width: 100%; border-top: 1px dashed #ccc; margin: 8px 0;">
       
